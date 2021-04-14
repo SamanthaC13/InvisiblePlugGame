@@ -1,0 +1,119 @@
+delete from "GameLog";
+
+delete from "UserStats";
+
+delete from "Users";
+
+ 
+
+INSERT INTO public."Users"(
+
+                "Password", "Username", "FirstName", "LastName")
+
+                VALUES ('Something', 'SamiC', 'Samantha', 'Craig');
+
+ 
+
+INSERT INTO public."GameLog"
+
+select 0,'2021-04-13 06:00:00', 100,"Userid"
+
+from "Users"
+
+where "Username" = 'SamiC';
+
+INSERT INTO public."GameLog"
+
+select 1,'2021-04-12 07:00:00', 90,"Userid"
+
+from "Users"
+
+where "Username" = 'SamiC';
+
+INSERT INTO public."GameLog"
+
+select 0,'2021-04-10 08:00:00', 80,"Userid"
+
+from "Users"
+
+where "Username" = 'SamiC';
+
+INSERT INTO public."GameLog"
+
+select 0,'2021-04-08 09:00:00', 70,"Userid"
+
+from "Users"
+
+where "Username" = 'SamiC';
+
+ 
+
+INSERT INTO public."UserStats"
+
+select 1,100,0.25,4,"Userid"
+
+from "Users"
+
+where "Username" = 'SamiC';
+
+ 
+
+INSERT INTO public."Users"(
+
+                "Password", "Username", "FirstName", "LastName")
+
+                VALUES ('Whatever', 'BigM', 'Mickey', 'Mouse');
+
+ 
+
+INSERT INTO public."GameLog"
+
+select 1,'2021-04-01 12:00:00', 75,"Userid"
+
+from "Users"
+
+where "Username" = 'BigM';
+
+INSERT INTO public."GameLog"
+
+select 1,'2021-04-02 07:00:00', 80,"Userid"
+
+from "Users"
+
+where "Username" = 'BigM';
+
+INSERT INTO public."GameLog"
+
+select 0,'2021-04-04 14:00:00', 85,"Userid"
+
+from "Users"
+
+where "Username" = 'BigM';
+
+INSERT INTO public."GameLog"
+
+select 0,'2021-04-09 09:00:00', 70,"Userid"
+
+from "Users"
+
+where "Username" = 'BigM';
+
+ 
+
+INSERT INTO public."UserStats"
+
+select 2,85,0.50,4,"Userid"
+
+from "Users"
+
+where "Username" = 'BigM';
+
+ 
+
+ 
+
+select * from "Users";
+
+select * from "GameLog";
+
+select * from "UserStats";
