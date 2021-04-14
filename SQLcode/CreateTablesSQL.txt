@@ -1,0 +1,67 @@
+CREATE TABLE public."Users"
+(
+    "Password" character(50) COLLATE pg_catalog."default",
+    "Username" character(50) COLLATE pg_catalog."default",
+    "FirstName" character(50) COLLATE pg_catalog."default",
+    "LastName" character(50) COLLATE pg_catalog."default",
+    "Userid" integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    CONSTRAINT "Users_pkey" PRIMARY KEY ("Userid")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."Users"
+    OWNER to sglabmzohngfaw;
+
+CREATE TABLE public."GameLog"
+(
+    "WinOrLose" integer,
+    "DateTime" timestamp without time zone,
+    "GameTime" integer NOT NULL,
+    "Userid" integer NOT NULL,
+    CONSTRAINT "GameLog_pkey" PRIMARY KEY ("GameTime", "Userid"),
+    CONSTRAINT fk_gamelog_userid FOREIGN KEY ("Userid")
+        REFERENCES public."Users" ("Userid") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."GameLog"
+    OWNER to sglabmzohngfaw;
+-- Index: fki_fk_userid
+
+-- DROP INDEX public.fki_fk_userid;
+
+CREATE INDEX fki_fk_userid
+    ON public."GameLog" USING btree
+    ("Userid" ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+CREATE TABLE public."UserStats"
+(
+    "RewardLevel" integer,
+    "BestTime" integer,
+    "WinLossRatio" double precision,
+    "NumberOfGamesPlayed" integer,
+    "Userid" integer NOT NULL,
+    CONSTRAINT "UserStats_pkey" PRIMARY KEY ("Userid"),
+    CONSTRAINT fk_userstats_userid FOREIGN KEY ("Userid")
+        REFERENCES public."Users" ("Userid") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."UserStats"
+    OWNER to sglabmzohngfaw;
+-- Index: fki_fk_users
+
+-- DROP INDEX public.fki_fk_users;
+
+CREATE INDEX fki_fk_users
+    ON public."UserStats" USING btree
+    ("Userid" ASC NULLS LAST)
+    TABLESPACE pg_default;
