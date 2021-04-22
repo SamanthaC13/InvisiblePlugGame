@@ -56,6 +56,12 @@ public class MenuController : MonoBehaviourPunCallbacks
         SceneManager.LoadScene("Help");
     }
 
+    public void onStatsButtonPress()
+    {
+        SceneManager.LoadScene("Stats");
+    }
+
+
     void Connect()
     {
         print("MENU CONNECTED");

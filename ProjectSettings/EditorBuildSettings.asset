@@ -64,6 +64,9 @@ EditorBuildSettings:
     path: Assets/Photon/PhotonVoice/Demos/DemoVoiceUI/DemoVoice.unity
     guid: 0ab5c0cab248b1c449cb35dd2672ffdb
   - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: c33054a9c5a75e64f85580368a4e11f2
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: eee0df0204d13dc44bd52f839ff7d990
   - enabled: 0
@@ -78,4 +81,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Help.unity
     guid: bbb6c7b5475f32148bd45d0f0bdb3e5b
+  - enabled: 1
+    path: Assets/Scenes/Register.unity
+    guid: 6f00ae916e042c34a87f3c13f8856c01
+  - enabled: 1
+    path: Assets/Scenes/Stats.unity
+    guid: 5585e962f54851c4c87c5e796541a191
   m_configObjects: {}
