@@ -6,26 +6,31 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Diagnostics;
 using System.Runtime.Serialization.Formatters;
+using System.Security.Cryptography;
 
 public class LoginScreen: MonoBehaviour
 {
-    public InputField x;
+    public InputField user;
+    public InputField pass;
+    public Text msg;
     public string test;
     public Button loginButton;
     public Button registerButton;
     public Button resetButton;
-    public string user;
     // Start is called before the first frame update
     void Start()
     {
         loginButton.onClick.AddListener(onLoginButtonPress);
         registerButton.onClick.AddListener(onRegisterButtonPress);
         resetButton.onClick.AddListener(onResetButtonPress);
-        x.onEndEdit.AddListener(usernameUpdate);
+        //x.onEndEdit.AddListener(usernameUpdate);
     }
     IEnumerator GetText()
     {
-        UnityWebRequest www = UnityWebRequest.Get("https://invisible-plug-game.herokuapp.com/login.php?username=" + user + "&password=Password");
+        user = GameObject.Find("Username").GetComponent<InputField>();
+        pass = GameObject.Find("Password").GetComponent<InputField>();
+        msg = GameObject.Find("Message").GetComponent<Text>();
+        UnityWebRequest www = UnityWebRequest.Get("https://invisible-plug-game.herokuapp.com/login.php?username=" + user.text + "&password=" + pass.text);
         yield return www.SendWebRequest();
         //if (www.result != UnityWebRequest.Result.Success)
         //{
@@ -43,6 +48,10 @@ public class LoginScreen: MonoBehaviour
         if (test.Substring(0, 1) == "1")
         {
             SceneManager.LoadScene("Menu");
+        }
+        else
+        {
+            msg.text = test;
         }
 
         //}
@@ -63,7 +72,7 @@ public class LoginScreen: MonoBehaviour
     public void onLoginButtonPress()
     {
         UnityEngine.Debug.Log("Start trying to get to the database");
-        user = x.text;
+        //user = x.text;
         StartCoroutine(GetText());
         
     }
