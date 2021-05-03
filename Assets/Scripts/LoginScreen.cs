@@ -16,13 +16,11 @@ public class LoginScreen: MonoBehaviour
     public string test;
     public Button loginButton;
     public Button registerButton;
-    public Button resetButton;
     // Start is called before the first frame update
     void Start()
     {
         loginButton.onClick.AddListener(onLoginButtonPress);
         registerButton.onClick.AddListener(onRegisterButtonPress);
-        resetButton.onClick.AddListener(onResetButtonPress);
         //x.onEndEdit.AddListener(usernameUpdate);
     }
     IEnumerator GetText()
@@ -80,10 +78,5 @@ public class LoginScreen: MonoBehaviour
     public void onRegisterButtonPress()
     {
         SceneManager.LoadScene("Register");
-    }
-
-    public void onResetButtonPress()
-    {
-        
     }
 }
