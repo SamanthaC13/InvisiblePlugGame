@@ -27,6 +27,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     void Awake()
     {
+        UnityEngine.Debug.Log(PlayerPrefs.GetString("name"));
         print("MENU AWAKE");
         PhotonNetwork.AutomaticallySyncScene = true;
     }

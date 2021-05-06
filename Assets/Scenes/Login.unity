@@ -595,8 +595,8 @@ MonoBehaviour:
   pass: {fileID: 0}
   msg: {fileID: 0}
   test: 
-  loginButton: {fileID: 0}
-  registerButton: {fileID: 0}
+  loginButton: {fileID: 1310343657}
+  registerButton: {fileID: 972145268}
 --- !u!1 &393883952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,8 +1445,8 @@ MonoBehaviour:
   pass: {fileID: 0}
   msg: {fileID: 0}
   test: 
-  loginButton: {fileID: 0}
-  registerButton: {fileID: 0}
+  loginButton: {fileID: 1310343657}
+  registerButton: {fileID: 972145268}
 --- !u!1 &1493752425
 GameObject:
   m_ObjectHideFlags: 0

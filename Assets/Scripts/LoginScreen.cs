@@ -19,6 +19,7 @@ public class LoginScreen: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        loginButton = GameObject.Find("Login").GetComponent<Button>();
         loginButton.onClick.AddListener(onLoginButtonPress);
         registerButton.onClick.AddListener(onRegisterButtonPress);
         //x.onEndEdit.AddListener(usernameUpdate);
@@ -45,6 +46,7 @@ public class LoginScreen: MonoBehaviour
         UnityEngine.Debug.Log(test.Substring(0,1));
         if (test.Substring(0, 1) == "1")
         {
+            PlayerPrefs.SetString("name", user.text);
             SceneManager.LoadScene("Menu");
         }
         else
