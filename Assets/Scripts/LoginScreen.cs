@@ -38,12 +38,12 @@ public class LoginScreen: MonoBehaviour
         //else
         //{
         // Show results as text
-            UnityEngine.Debug.Log(www.downloadHandler.text);
+            //UnityEngine.Debug.Log(www.downloadHandler.text);
             //test = www.downloadHandler.text;
             // Or retrieve results as binary data
             test = www.downloadHandler.text;
-        UnityEngine.Debug.Log(test);
-        UnityEngine.Debug.Log(test.Substring(0,1));
+        //UnityEngine.Debug.Log(test);
+        //UnityEngine.Debug.Log(test.Substring(0,1));
         if (test.Substring(0, 1) == "1")
         {
             PlayerPrefs.SetString("name", user.text);
@@ -67,11 +67,11 @@ public class LoginScreen: MonoBehaviour
 
     public void usernameUpdate()
     {
-        UnityEngine.Debug.Log("Hello World");
+        //UnityEngine.Debug.Log("Hello World");
     }
     public void onLoginButtonPress()
     {
-        UnityEngine.Debug.Log("Start trying to get to the database");
+        //UnityEngine.Debug.Log("Start trying to get to the database");
         //user = x.text;
         StartCoroutine(GetText());
         
