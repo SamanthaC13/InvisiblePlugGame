@@ -42,7 +42,7 @@ public class LoginScreen: MonoBehaviour
             //test = www.downloadHandler.text;
             // Or retrieve results as binary data
             test = www.downloadHandler.text;
-        //UnityEngine.Debug.Log(test);
+        UnityEngine.Debug.Log(test);
         //UnityEngine.Debug.Log(test.Substring(0,1));
         if (test.Substring(0, 1) == "1")
         {

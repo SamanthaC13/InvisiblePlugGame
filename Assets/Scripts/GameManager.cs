@@ -4,6 +4,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections.Generic;
+using UnityEngine.Networking;
+using System.Diagnostics;
+using System.Runtime.Serialization.Formatters;
+using System.Security.Cryptography;
+
+
+
+
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public bool didWin = false;
@@ -28,6 +37,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Tooltip("Reset Button")]
     [SerializeField]
     private Button restartButton;
+
+    string user;
 
     public static GameManager Instance;
 
@@ -86,7 +97,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 return 40f;
                 break;
             default:
-                Debug.Log("Default case");
+                //Debug.Log("Default case");
                 return 60f;
                 break;
         }
@@ -117,15 +128,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     //Known Issue: If the plug is plugged in just as the timer runs out, there is a chance that the win text and the loss text will both be enabled.
     [PunRPC]
     public void EndGame() {
-        if(didWin) {
+        user = PlayerPrefs.GetString("name");
+        if (didWin) {
             winText.enabled = true; //Displays the win text.
             Photon.Pun.UtilityScripts.CountdownTimer.OnCountdownTimerHasExpired -= OnCountdownTimerHasExpired; //Makes it so that nothing happens when the countdown timer ends.
             timerText.GetComponent<Photon.Pun.UtilityScripts.CountdownTimer>().enabled = false; //Makes the timer stop, at least on the UI.
+            
         }
         else if(!didWin) {
             loseText.enabled = true; //Displays the lose text.
         }
-
+        StartCoroutine(GetText());
         //Disables the script and buttons for the plug player when the game ends.
         plugModel.GetComponent<PlugPlayerController>().disableButtons();
         plugModel.GetComponent<PlugPlayerController>().enabled = false;
@@ -135,6 +148,19 @@ public class GameManager : MonoBehaviourPunCallbacks
         plugModel.GetComponent<ObserverController>().enabled = false;
 
         restartButton.gameObject.SetActive(true); //Displays the restart button.
+    }
+    IEnumerator GetText()
+    {
+        //num games play, win/loss, best time
+        int x = 0;
+        if (didWin)
+        {
+            x = 1;
+        }
+        UnityEngine.UI.Text timerUI = timerText.GetComponent<UnityEngine.UI.Text>();
+        int result = 120 - System.Int32.Parse(timerUI.text);
+        UnityWebRequest www = UnityWebRequest.Get("https://invisible-plug-game.herokuapp.com/addgame.php?username=" + user + "&win=" + x + "&dt=2021-05-09%2013:00:00&gamelen=" + result);
+        yield return www.SendWebRequest();
     }
 
     //This function is not run by the MasterClient, only other clients. (In other words, only the observer.)

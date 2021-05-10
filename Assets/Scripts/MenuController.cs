@@ -18,16 +18,16 @@ using System.Security.Cryptography;
 
 public class MenuController : MonoBehaviourPunCallbacks
 {
-    public Image award;
+    public Button award1;
+    public Button award2;
+    public Button award3;
+    public Button award4;
+    public Button award5;
+    public Button award6;
     string gameVersion = "1";
     string user;
-    public Image Medal1;
-    public Image Medal2;
-    public Image Medal3;
-    public Image Medal4;
-    public Image Medal5;
-    public Image Medal6;
-    int score;
+    public string score = "Hello World";
+
 
     [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
     [SerializeField]
@@ -44,50 +44,76 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     IEnumerator GetText()
     {
-
-        award = GameObject.Find("award").GetComponent<Image>();
         UnityWebRequest www = UnityWebRequest.Get("https://invisible-plug-game.herokuapp.com/reward.php?username=" + user);
         yield return www.SendWebRequest();
-        score = Int16.Parse(www.downloadHandler.text);
+        score = www.downloadHandler.text;
+        //award = GameObject.Find("Award").GetComponent<Image>();
         UnityEngine.Debug.Log(score);
-
         //grey
-        if (score == 0)
+        if (score.Substring(0, 1) == "0")
         {
-            award = Medal1;
+            award1.gameObject.SetActive(true);
+
+            award2.gameObject.SetActive(false);
+
+            award3.gameObject.SetActive(false);
+
+            award4.gameObject.SetActive(false);
+
+            award5.gameObject.SetActive(false);
+
+            award6.gameObject.SetActive(false);
         }
         //bornze
-        else if (score <= 5)
+        else if (score.Substring(0, 1) == "1")
         {
-            award = Medal2;
+            award1.gameObject.SetActive(false);
+
+            award2.gameObject.SetActive(true);
+
+            award3.gameObject.SetActive(false);
+
+            award4.gameObject.SetActive(false);
+
+            award5.gameObject.SetActive(false);
+
+            award6.gameObject.SetActive(false);
         }
         //silver
-        else if (score <= 10)
+        else if (score.Substring(0, 1) == "2")
         {
-            award = Medal3;
+            award1.gameObject.SetActive(false);
+
+            award2.gameObject.SetActive(false);
+
+            award3.gameObject.SetActive(true);
+
+            award4.gameObject.SetActive(false);
+
+            award5.gameObject.SetActive(false);
+
+            award6.gameObject.SetActive(false);
         }
         //gold
-        else if (score <= 15)
+        /*else if (score.Substring(0, 1) == "3")
         {
-            award = Medal4;
+            award4.gameObject.SetActive(true);
         }
         //blue
-        else if (score <= 20)
+        else if (score.Substring(0, 1) == "4")
         {
-            award = Medal5;
+            award5.gameObject.SetActive(true);
         }
         //green
         else
         {
-            award = Medal6;
-        }
+            award6.gameObject.SetActive(true);
+        }*/
     }
 
     void Awake()
     {
-        user = PlayerPrefs.GetString("name");
-        UnityEngine.Debug.Log(user);
-        StartCoroutine(GetText());
+        
         //print("MENU AWAKE");
         PhotonNetwork.AutomaticallySyncScene = true;
     }
@@ -98,6 +124,28 @@ public class MenuController : MonoBehaviourPunCallbacks
         //print("MENU LOADED");
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+        user = PlayerPrefs.GetString("name");
+        UnityEngine.Debug.Log(user);
+
+        award1 = GameObject.Find("Award1").GetComponent<Button>();
+        //award1.gameObject.SetActive(false);
+
+        award2 = GameObject.Find("Award2").GetComponent<Button>();
+        //award2.gameObject.SetActive(false);
+
+        award3 = GameObject.Find("Award3").GetComponent<Button>();
+        //award3.gameObject.SetActive(false);
+
+        award4 = GameObject.Find("Award4").GetComponent<Button>();
+        //award4.gameObject.SetActive(false);
+
+        award5 = GameObject.Find("Award5").GetComponent<Button>();
+        //award5.gameObject.SetActive(false);
+         
+        award6 = GameObject.Find("Award6").GetComponent<Button>();
+        //award6.gameObject.SetActive(false);
+
+        StartCoroutine(GetText());
     }
 
 

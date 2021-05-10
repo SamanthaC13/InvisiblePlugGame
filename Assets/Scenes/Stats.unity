@@ -459,8 +459,9 @@ GameObject:
   - component: {fileID: 887191182}
   - component: {fileID: 887191184}
   - component: {fileID: 887191183}
+  - component: {fileID: 887191185}
   m_Layer: 5
-  m_Name: Plug Player Controls
+  m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,17 +522,10 @@ MonoBehaviour:
 
     Number of games won:
 
-    Number of times
-    as observer:
+    Win/Loss Ratio:
 
-    number of times won as observer:
-
-    number of times as plugger:
-
-    Number
-    of times won as Plugger:
-
-    Play time:'
+    Best
+    time:'
 --- !u!222 &887191184
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -540,6 +534,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887191181}
   m_CullTransparentMesh: 0
+--- !u!114 &887191185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887191181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82623f2926b2ff14f9c0618585515d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1226929772
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +717,7 @@ GameObject:
   - component: {fileID: 1834317778}
   - component: {fileID: 1834317777}
   m_Layer: 5
-  m_Name: Plug Player Controls Heading
+  m_Name: Heading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
