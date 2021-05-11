@@ -90,4 +90,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Leaderboard.unity
     guid: 5a62aca24e622474bb2274cbfb1aa28b
+  - enabled: 1
+    path: Assets/Scenes/ButtonRewards.unity
+    guid: 2c3708f9ec373d6489b8ce20c1c16408
   m_configObjects: {}

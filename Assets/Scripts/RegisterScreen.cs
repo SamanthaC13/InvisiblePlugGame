@@ -38,7 +38,7 @@ public class RegisterScreen : MonoBehaviour
         errorMessage = GameObject.Find("Error").GetComponent<Text>();
 
         UnityEngine.Debug.Log("Hello World");
-        errorMessage.text = "in the function";
+        //errorMessage.text = "in the function";
 
         if (user.text == "" || fn.text == "" || ln.text == "" || pass.text == "" || passC.text == "")
         {

@@ -14,16 +14,23 @@ using UnityEngine.Networking;
 using System.Diagnostics;
 using System.Runtime.Serialization.Formatters;
 using System.Security.Cryptography;
-
+using System.Runtime.Versioning;
 
 public class MenuController : MonoBehaviourPunCallbacks
 {
     public Button award1;
-    public Button award2;
+    public Sprite Image1;
+    public Sprite Image2;
+    public Sprite Image3;
+    public Sprite Image4;
+    public Sprite Image5;
+
+
+    /*public Button award2;
     public Button award3;
     public Button award4;
     public Button award5;
-    public Button award6;
+    public Button award6;*/
     string gameVersion = "1";
     string user;
     public string score = "Hello World";
@@ -50,24 +57,29 @@ public class MenuController : MonoBehaviourPunCallbacks
         //award = GameObject.Find("Award").GetComponent<Image>();
         UnityEngine.Debug.Log(score);
         //grey
-        if (score.Substring(0, 1) == "0")
+        if (score.Substring(0, 1) == "1")
         {
-            award1.gameObject.SetActive(true);
+            award1.GetComponent<Image>().sprite = Image1;
 
-            award2.gameObject.SetActive(false);
 
-            award3.gameObject.SetActive(false);
+            /* award1.gameObject.SetActive(true);
 
-            award4.gameObject.SetActive(false);
+             award2.gameObject.SetActive(false);
 
-            award5.gameObject.SetActive(false);
+             award3.gameObject.SetActive(false);
 
-            award6.gameObject.SetActive(false);
+             award4.gameObject.SetActive(false);
+
+             award5.gameObject.SetActive(false);
+
+             award6.gameObject.SetActive(false);*/
         }
         //bornze
-        else if (score.Substring(0, 1) == "1")
+        else if (score.Substring(0, 1) == "2")
         {
-            award1.gameObject.SetActive(false);
+            award1.GetComponent<Image>().sprite = Image2;
+
+            /*award1.gameObject.SetActive(false);
 
             award2.gameObject.SetActive(true);
 
@@ -77,12 +89,14 @@ public class MenuController : MonoBehaviourPunCallbacks
 
             award5.gameObject.SetActive(false);
 
-            award6.gameObject.SetActive(false);
+            award6.gameObject.SetActive(false);*/
         }
         //silver
-        else if (score.Substring(0, 1) == "2")
+        else if (score.Substring(0, 1) == "3")
         {
-            award1.gameObject.SetActive(false);
+            award1.GetComponent<Image>().sprite = Image3;
+
+            /*award1.gameObject.SetActive(false);
 
             award2.gameObject.SetActive(false);
 
@@ -92,7 +106,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
             award5.gameObject.SetActive(false);
 
-            award6.gameObject.SetActive(false);
+            award6.gameObject.SetActive(false);*/
         }
         //gold
         /*else if (score.Substring(0, 1) == "3")
@@ -128,6 +142,14 @@ public class MenuController : MonoBehaviourPunCallbacks
         UnityEngine.Debug.Log(user);
 
         award1 = GameObject.Find("Award1").GetComponent<Button>();
+        Image1 = Resources.Load<Sprite>("BronzeMedalAsset 3");
+        Image2 = Resources.Load<Sprite>("SilverMedalAsset 2");
+        Image3 = Resources.Load<Sprite>("GoldMedalAsset 1");
+        Image4 = Resources.Load<Sprite>("BlueMedalAsset 4");
+        Image5 = Resources.Load<Sprite>("GreenMedalAsset 5");
+        
+
+        /*award1 = GameObject.Find("Award1").GetComponent<Button>();
         //award1.gameObject.SetActive(false);
 
         award2 = GameObject.Find("Award2").GetComponent<Button>();
@@ -143,7 +165,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         //award5.gameObject.SetActive(false);
          
         award6 = GameObject.Find("Award6").GetComponent<Button>();
-        //award6.gameObject.SetActive(false);
+        //award6.gameObject.SetActive(false);*/
 
         StartCoroutine(GetText());
     }
@@ -174,6 +196,10 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void onLeaderboardButtonPress()
     {
         SceneManager.LoadScene("Leaderboard");
+    }
+    public void onAwardButtonPress()
+    {
+        SceneManager.LoadScene("ButtonRewards");
     }
 
 
